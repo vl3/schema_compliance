@@ -18,7 +18,7 @@ module SchemaCompliance
         ::T.nilable(wrapped.expected_type)
       end
 
-      def humanized_type(field)
+      def humanized_type
         "#{@wrapped.expected_type} or nil"
       end
 

@@ -27,60 +27,70 @@ class SchemaTest < Minitest::Test
   def test_that_its_valid
     assert_equal(
       SchemaCompliance::Result.new(true, {}),
-      @schema.validate(
-        {
-          name: "Amazing product!",
-          tax: { value: 10, currency: "USD" },
-          price: { value: 100, currency: "USD" },
-          description: "Long description",
-          times_bought: 20
-        }
-      )
+      @schema.validate(valid_schema)
     )
   end
 
   def test_invalid_string_field
     assert_equal(
       SchemaCompliance::Result.new(false, name: ["Expected String, got #{1.class} with value 1"]),
-      @schema.validate(
-        {
-          name: 1,
-          tax: { value: 10, currency: "USD" },
-          price: { value: 100, currency: "USD" },
-          description: "Long description",
-          times_bought: 20
-        }
-      )
+      @schema.validate(invalid_string_field)
     )
   end
 
   def test_invalid_integer_field
     assert_equal(
       SchemaCompliance::Result.new(false, times_bought: ["Expected Integer, got String with value 20"]),
-      @schema.validate(
-        {
-          name: "Amazing product!",
-          tax: { value: 10, currency: "USD" },
-          price: { value: 100, currency: "USD" },
-          description: "Long description",
-          times_bought: "20"
-        }
-      )
+      @schema.validate(invalid_integer_field)
     )
   end
 
   def test_invalid_schema_field
     assert_equal(
       SchemaCompliance::Result.new(false, tax: { value: ["Expected Integer, got String with value 10"] }),
-      @schema.validate(
-        {
-          name: "Amazing product!",
-          tax: { value: "10", currency: "USD" },
-          price: { value: 100, currency: "USD" },
-          description: "Long description",
-          times_bought: 20
-        }
-      )
+      @schema.validate(invalid_schema_field)
     )
+  end
+
+  private
+
+  def valid_schema
+    {
+      name: "Amazing product!",
+      tax: { value: 10, currency: "USD" },
+      price: { value: 100, currency: "USD" },
+      description: "Long description",
+      times_bought: 20
+    }
+  end
+
+  def invalid_integer_field
+    {
+      name: "Amazing product!",
+      tax: { value: 10, currency: "USD" },
+      price: { value: 100, currency: "USD" },
+      description: "Long description",
+      times_bought: "20"
+    }
+  end
+
+  def invalid_string_field
+    {
+      name: 1,
+      tax: { value: 10, currency: "USD" },
+      price: { value: 100, currency: "USD" },
+      description: "Long description",
+      times_bought: 20
+    }
+  end
+
+  def invalid_schema_field
+    {
+      name: "Amazing product!",
+      tax: { value: "10", currency: "USD" },
+      price: { value: 100, currency: "USD" },
+      description: "Long description",
+      times_bought: 20
+    }
   end
 end
