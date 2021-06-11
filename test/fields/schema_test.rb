@@ -26,7 +26,7 @@ class SchemaTest < Minitest::Test
 
   def test_that_its_valid
     assert_equal(
-      SchemaCompliance::Result.new(true, []).valid?,
+      SchemaCompliance::Result.new(true, {}),
       @schema.validate(
         {
           name: "Amazing product!",
@@ -35,13 +35,13 @@ class SchemaTest < Minitest::Test
           description: "Long description",
           times_bought: 20
         }
-      ).valid?
+      )
     )
   end
 
   def test_invalid_string_field
     assert_equal(
-      SchemaCompliance::Result.new(false, name: "Expected String, got #{1.class} with value 1").valid?,
+      SchemaCompliance::Result.new(false, name: ["Expected String, got #{1.class} with value 1"]),
       @schema.validate(
         {
           name: 1,
@@ -50,13 +50,13 @@ class SchemaTest < Minitest::Test
           description: "Long description",
           times_bought: 20
         }
-      ).valid?
+      )
     )
   end
 
   def test_invalid_integer_field
     assert_equal(
-      SchemaCompliance::Result.new(false, times_bought: "Expected Integer, got String with value 20").valid?,
+      SchemaCompliance::Result.new(false, times_bought: ["Expected Integer, got String with value 20"]),
       @schema.validate(
         {
           name: "Amazing product!",
@@ -65,13 +65,13 @@ class SchemaTest < Minitest::Test
           description: "Long description",
           times_bought: "20"
         }
-      ).valid?
+      )
     )
   end
 
   def test_invalid_schema_field
     assert_equal(
-      SchemaCompliance::Result.new(false, []).valid?,
+      SchemaCompliance::Result.new(false, tax: { value: ["Expected Integer, got String with value 10"] }),
       @schema.validate(
         {
           name: "Amazing product!",
@@ -80,7 +80,7 @@ class SchemaTest < Minitest::Test
           description: "Long description",
           times_bought: 20
         }
-      ).valid?
+      )
     )
   end
 end
