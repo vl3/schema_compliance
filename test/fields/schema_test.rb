@@ -29,10 +29,10 @@ class SchemaTest < Minitest::Test
       SchemaCompliance::Result.new(true, []).valid?,
       @schema.validate(
         {
-          name: 'Amazing product!',
-          tax: { value: 10, currency: 'USD' },
-          price: { value: 100, currency: 'USD' },
-          description: 'Long description',
+          name: "Amazing product!",
+          tax: { value: 10, currency: "USD" },
+          price: { value: 100, currency: "USD" },
+          description: "Long description",
           times_bought: 20
         }
       ).valid?
@@ -45,9 +45,9 @@ class SchemaTest < Minitest::Test
       @schema.validate(
         {
           name: 1,
-          tax: { value: 10, currency: 'USD' },
-          price: { value: 100, currency: 'USD' },
-          description: 'Long description',
+          tax: { value: 10, currency: "USD" },
+          price: { value: 100, currency: "USD" },
+          description: "Long description",
           times_bought: 20
         }
       ).valid?
@@ -59,11 +59,11 @@ class SchemaTest < Minitest::Test
       SchemaCompliance::Result.new(false, times_bought: "Expected Integer, got String with value 20").valid?,
       @schema.validate(
         {
-          name: 'Amazing product!',
-          tax: { value: 10, currency: 'USD' },
-          price: { value: 100, currency: 'USD' },
-          description: 'Long description',
-          times_bought: '20'
+          name: "Amazing product!",
+          tax: { value: 10, currency: "USD" },
+          price: { value: 100, currency: "USD" },
+          description: "Long description",
+          times_bought: "20"
         }
       ).valid?
     )
@@ -74,25 +74,10 @@ class SchemaTest < Minitest::Test
       SchemaCompliance::Result.new(false, []).valid?,
       @schema.validate(
         {
-          name: 'Amazing product!',
-          tax: { value: '10', currency: 'USD' },
-          price: { value: 100, currency: 'USD' },
-          description: 'Long description',
-          times_bought: 20
-        }
-      ).valid?
-    )
-  end
-
-  def test_invalid_schema_field
-    assert_equal(
-      SchemaCompliance::Result.new(false, []).valid?,
-      @schema.validate(
-        {
-          name: 'Amazing product!',
-          tax: { value: '10', currency: 'USD' },
-          price: { value: 100, currency: 'USD' },
-          description: 'Long description',
+          name: "Amazing product!",
+          tax: { value: "10", currency: "USD" },
+          price: { value: 100, currency: "USD" },
+          description: "Long description",
           times_bought: 20
         }
       ).valid?

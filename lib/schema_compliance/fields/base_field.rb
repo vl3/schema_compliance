@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module SchemaCompliance
   module Fields
     class BaseField
@@ -19,6 +21,10 @@ module SchemaCompliance
 
       def validation_error_message(field)
         "Expected Object, got #{field.class} with value #{field}"
+      end
+
+      def to_swagger
+        { type: :object }
       end
     end
   end

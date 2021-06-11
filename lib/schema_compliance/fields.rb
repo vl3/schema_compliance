@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative "fields/base_field"
 require_relative "fields/schema"
 require_relative "fields/integer_field"

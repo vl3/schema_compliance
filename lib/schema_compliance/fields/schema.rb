@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 module SchemaCompliance
   module Fields
     class Schema < BaseField
       attr_reader :fields
 
       def initialize
-        @fields = Hash.new
+        @fields = {}
         attributes
       end
 
@@ -13,7 +15,7 @@ module SchemaCompliance
       end
 
       def validate(hash)
-        errors = Hash.new
+        errors = {}
         @fields.each do |field_name, type|
           provided_field = hash.fetch(field_name)
           result = type.validate(provided_field)

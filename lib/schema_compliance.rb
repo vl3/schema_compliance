@@ -3,7 +3,7 @@
 require_relative "schema_compliance/version"
 require_relative "schema_compliance/fields"
 
-require 'sorbet-runtime'
+require "sorbet-runtime"
 
 def Optional(wrapped_class)
   SchemaCompliance::Fields::OptionalField.new(wrapped_class)
