@@ -7,10 +7,6 @@ module SchemaCompliance
         Integer
       end
 
-      def validation_error_message(field)
-        "Expected Integer, got #{field.class} with value #{field}"
-      end
-
       def to_swagger
         { type: :integer }
       end

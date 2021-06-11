@@ -7,10 +7,6 @@ module SchemaCompliance
         String
       end
 
-      def validation_error_message(field)
-        "Expected String, got #{field.class} with value #{field}"
-      end
-
       def to_swagger
         { type: :string }
       end

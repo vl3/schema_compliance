@@ -9,6 +9,10 @@ module SchemaCompliance
         Object
       end
 
+      def humanized_type
+        expected_type.to_s
+      end
+
       def validate(field)
         error = nil
         begin
@@ -20,7 +24,7 @@ module SchemaCompliance
       end
 
       def validation_error_message(field)
-        "Expected Object, got #{field.class} with value #{field}"
+        "Expected #{humanized_type}, got #{field.class} with value #{field}"
       end
 
       def to_swagger

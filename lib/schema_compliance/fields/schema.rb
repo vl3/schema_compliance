@@ -28,6 +28,10 @@ module SchemaCompliance
         Hash
       end
 
+      def humanized_type
+        "Hash"
+      end
+
       def to_swagger
         base = { type: :object, properties: {} }
         @fields.each do |field_name, type|

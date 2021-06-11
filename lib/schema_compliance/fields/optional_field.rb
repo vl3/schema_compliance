@@ -18,12 +18,13 @@ module SchemaCompliance
         ::T.nilable(wrapped.expected_type)
       end
 
-      def validation_error_message(field)
-        "Expected #{@wrapped.expected_type} or nil, got #{field.class} with value #{field}"
+      def humanized_type(field)
+        "#{@wrapped.expected_type} or nil"
       end
 
       def to_swagger
-        { optional: true }
+        swagger_field = wrapped.to_swagger
+        { optional: true }.merge(swagger_field)
       end
     end
   end
