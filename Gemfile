@@ -11,4 +11,5 @@ gem "minitest", "~> 5.0"
 
 gem "rubocop", "~> 0.80"
 
-gem "sorbet-runtime"
+gem 'sorbet', :group => :development
+gem 'sorbet-runtime'
