@@ -10,6 +10,7 @@ module SchemaCompliance
         @wrapped = wrapped
       end
 
+      sig {params(field: T.class_of(Hash)).returns(Result)}
       def validate(field)
         super(field)
         @wrapped.validate(field)
@@ -19,6 +20,7 @@ module SchemaCompliance
         ::T.nilable(wrapped.expected_type)
       end
 
+      sig {returns(String)}
       def humanized_type
         "#{@wrapped.expected_type} or nil"
       end

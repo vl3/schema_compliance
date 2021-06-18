@@ -25,10 +25,12 @@ module SchemaCompliance
         Result.new(errors.empty?, errors)
       end
 
+      sig {returns(T.class_of(Hash))}
       def expected_type
         Hash
       end
 
+      sig {returns(Hash)}
       def to_swagger
         base = { type: :object, properties: {} }
         @fields.each do |field_name, type|

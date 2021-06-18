@@ -15,7 +15,7 @@ StringField = SchemaCompliance::Fields::StringField
 Schema = SchemaCompliance::Fields::Schema
 
 module SchemaCompliance
-  extend T::Sig
+  extend ::T::Sig
 
   class Error < StandardError; end
 
