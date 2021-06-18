@@ -31,6 +31,13 @@ Gem::Specification.new do |spec|
   # Uncomment to register a new dependency of your gem
   # spec.add_dependency "example-gem", "~> 1.0"
 
+  spec.add_dependency "rake", "~> 13.0"
+  spec.add_dependency "rubocop", "~> 0.80"
+  spec.add_dependency "sorbet-runtime"
+
+  spec.add_development_dependency "minitest", "~> 5.0"
+  spec.add_development_dependency "sorbet"
+
   # For more information and examples about making a new gem, checkout our
   # guide at: https://bundler.io/guides/creating_gem.html
 end
